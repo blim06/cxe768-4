@@ -17,7 +17,7 @@ int main(int argc, char **argv)
    int    sd, port;
    struct   hostent      *hp;
    struct   sockaddr_in server;
-   char   *host, *rbuf[BUFLEN], *sbuf[BUFLEN];
+   char   *host, rbuf[BUFLEN], sbuf[BUFLEN];
    FILE *receiver;
 
    switch(argc){
@@ -59,7 +59,7 @@ int main(int argc, char **argv)
 	printf("File name: \n");
 	while(n=read(0, sbuf, BUFLEN)) {
         write(sd, sbuf, n);
-	sbuf[n+1]="\0";
+	sbuf[n-1]="\0";
 	printf("Filename: |%s|", sbuf);
 
 
